@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+.idea/markdown-navigator
+.idea/misc.xml
+.idea/modules.xml
+.idea/REST_API_Server.iml
+.idea/vcs.xml
+.idea/workspace.xml
+REST.pyc
