@@ -32,7 +32,7 @@ class RunDocker:
         logging.info('Client is trying to run docker.')
         web.header('Content-Type', 'text/json')
         logging.info("RunDocker: starting container-tomcat")
-        r = commands.getstatusoutput('./opt/apps/Docker_tomcat_8/startTomcatDocker.sh')
+        r = commands.getstatusoutput('/opt/apps/Docker_tomcat_8/startTomcatDocker.sh')
         logging.info("RunDocker: running results: " + r[1])
         if r[0] == 0:
             logging.info("RunDocker: run docker successfully.")
