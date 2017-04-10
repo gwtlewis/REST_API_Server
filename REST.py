@@ -76,5 +76,6 @@ class results:
 # Main - run Server
 if __name__ == '__main__':
     logging.info('Initializing REST API Server...')
+    web.webapi.config.debug = False
     app.run()
     logging.info('REST API Server stopped.')
