@@ -13,7 +13,7 @@ render = web.template.render('templates')
 
 urls = (
     '/', 'index',
-    '/exe', 'RunDocker',
+    '/docker', 'RunDocker',
     '/test', 'Test'
 )
 
@@ -31,21 +31,14 @@ class RunDocker:
     def GET(self):
         logging.info('Client is trying to run docker.')
         web.header('Content-Type', 'text/json')
-        logging.info("RunDocker: going to docker's directory")
-        r1 = commands.getstatusoutput('cd /opt/apps/Docker_tomcat_8')
-        r = commands.getoutput('pwd')
-        if r1[0] == 0:
-            logging.info("RunDocker: "+r[0])
-            logging.info("RunDocker: running docker")
-            r2 = commands.getstatusoutput('./startTomcatDocker.sh')
-            if r2[0] == 0:
-                logging.info("RunDocker: docker successfully running, enjoy the service")
-                return results.success()
-            else:
-                logging.error("RunDocker: fail to run docker"+r2[1])
-                return results.fail()
+        logging.info("RunDocker: starting container-tomcat")
+        r = commands.getstatusoutput('./opt/apps/Docker_tomcat_8/startTomcatDocker.sh')
+        logging.info("RunDocker: running results: " + r[1])
+        if r[0] == 0:
+            logging.info("RunDocker: run docker successfully.")
+            return results.success()
         else:
-            logging.error("RunDocker: fail to go to docker's directory" + r1[1])
+            logging.error("RunDocker: run docker failed.")
             return results.fail()
 
 
